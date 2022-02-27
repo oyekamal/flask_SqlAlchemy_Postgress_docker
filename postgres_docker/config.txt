@@ -1,0 +1,3 @@
+db: postgres
+user: postgres
+password: example 
