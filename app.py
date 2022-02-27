@@ -1,4 +1,5 @@
-from flask import Flask
+from crypt import methods
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -19,7 +20,7 @@ class CarsModel(db.Model):
     def __init__(self, name, model, doors):
         self.name = name
         self.model = model
-        self.doors = doors
+        self.doors = int(doors)
 
     def __repr__(self):
         return f"<Car {self.name}>"
@@ -28,6 +29,34 @@ class CarsModel(db.Model):
 @app.route('/')
 def hello():
     return {"message": "hello world"}
+
+
+@app.route('/car', methods=["POST", "GET"])
+def handler_cars():
+    if request.method == 'POST':
+        if request.json:
+            data = request.json
+            print("data_____", data)
+            print("data_____", data.get('name'))
+            new_car = CarsModel(
+                name=data['name'], model=data['model'], doors=data['doors'])
+
+            db.session.add(new_car)
+            db.session.commit()
+            return {"message": "{} is created".format(new_car.name)}
+        else:
+            return {"message": "no json provided"}
+
+    elif request.method == 'GET':
+        cars = CarsModel.query.all()
+        results = [
+            {
+                "name": car.name,
+                "model": car.model,
+                "doors": car.doors
+            } for car in cars]
+
+        return {"count": len(results), "cars": results}
 
 
 if __name__ == '__main__':
