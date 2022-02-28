@@ -14,3 +14,7 @@ psycopg2-binary==2.9.3
 SQLAlchemy==1.4.31
 Werkzeug==2.0.3
 zipp==3.7.0
+
+pyjwt==2.0.0
+datetime
+uuid

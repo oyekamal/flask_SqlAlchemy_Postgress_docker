@@ -59,6 +59,8 @@ password: example
 
 https://stackabuse.com/using-sqlalchemy-with-flask-and-postgresql/
 
+https://www.bacancytechnology.com/blog/flask-jwt-authentication
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
