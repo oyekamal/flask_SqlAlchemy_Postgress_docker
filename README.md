@@ -1,6 +1,6 @@
 # Using Sqlalchemy with Flask, postgresql and Adminer in docker
 
-First install docker in your computer
+First install docker in your computer. flask token auth code also present look at the branches.
 
 ## Clone Project
 
